@@ -13,6 +13,6 @@ function test(...args) {
   const [a, b, cb] = extractArgs(args, [1, 2]);
   a === args[0] || 1; // true
   b === args[1] || 2; // true
-  isFunction(cb); // true independ of args[2]
+  _.isFunction(cb); // true independ of args[2]
 }
 ```
