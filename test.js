@@ -7,8 +7,6 @@ var extractArgs = require("./index.js");
 /* eslint id-length:0 */
 var _ = require("lodash");
 
-var NONE_FUNC_STRING = "function none() {}";
-
 describe("test", function() {
   it("check export", function() {
     expect(_.isFunction(extractArgs)).to.true;
@@ -18,14 +16,14 @@ describe("test", function() {
     var res = extractArgs();
     expect(res).to.have.length(1);
     expect(_.isFunction(res[0])).to.be.true;
-    expect(res[0].toString()).to.eql(NONE_FUNC_STRING);
+    expect(res[0]).to.eql(extractArgs.none);
   });
 
   it("null args + defaults []", function() {
     var res = extractArgs(null, []);
     expect(res).to.have.length(1);
     expect(_.isFunction(res[0])).to.be.true;
-    expect(res[0].toString()).to.eql(NONE_FUNC_STRING);
+    expect(res[0]).to.eql(extractArgs.none);
   });
 
   it("null args + defaults [function]", function() {
@@ -47,7 +45,7 @@ describe("test", function() {
     var res = extractArgs(null, defaults);
     expect(res).to.have.length(4);
     expect(res.slice(0, 3)).to.eql(defaults);
-    expect(res[3].toString()).to.eql(NONE_FUNC_STRING);
+    expect(res[3]).to.eql(extractArgs.none);
   });
 
   it("args without default", function() {
@@ -60,12 +58,12 @@ describe("test", function() {
     var res2 = extractArgs(args2);
     expect(res2).to.have.length(3);
     expect(res2.slice(0, 2)).to.eql(args2);
-    expect(res2[2].toString()).to.eql(NONE_FUNC_STRING);
+    expect(res2[2]).to.eql(extractArgs.none);
 
     var args3 = [];
     var res3 = extractArgs(args3);
     expect(res3).to.have.length(1);
-    expect(res3[0].toString()).to.eql(NONE_FUNC_STRING);
+    expect(res3[0]).to.eql(extractArgs.none);
   });
 
   it("args (1, undefined, 3, func) with defaults ", function() {

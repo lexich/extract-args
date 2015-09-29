@@ -6,7 +6,7 @@ var isUndefined = require("lodash/lang/isUndefined");
 
 function none() {}
 
-module.exports = function(args, defaults) {
+function extractArgs(args, defaults) {
   var result = !isArray(defaults) ? [] : defaults.concat();
   if (isArray(args)) {
     /* eslint id-length:0 */
@@ -18,4 +18,8 @@ module.exports = function(args, defaults) {
     result[result.length] = none;
   }
   return result;
-};
+}
+
+extractArgs.none = none;
+
+module.exports = extractArgs;

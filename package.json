@@ -9,9 +9,10 @@
   },
   "repository": "http://github.com/lexich/extract-args",
   "scripts": {
-    "test": "npm run jscs && npm run eslint && node_modules/.bin/mocha test.js",
-    "mocha": "istanbul test _mocha --report html -- test.js --reporter spec",
-    "coveralls": "npm test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && npm run clean",
+    "test": "npm run jscs && npm run eslint && npm run mocha",
+    "mocha": "istanbul test _mocha test.js",
+    "coveralls": "istanbul cover node_modules/.bin/_mocha --report html --report lcovonly -- test.js && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+
     "clean": "rm -rf ./coverage",
     "jscs": "node_modules/.bin/jscs test.js index.js",
     "eslint": "node_modules/.bin/eslint test.js index.js",
